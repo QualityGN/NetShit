@@ -17,7 +17,6 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
     private final static String ACCOUNT_EXIST = "账号已存在";
-    private final static String UPDATE_ERROR = "修改失败";
     private final static String USER_NOTEXIST = "用户不存在";
 
     @Autowired

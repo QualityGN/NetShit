@@ -1,0 +1,15 @@
+package com.example.network.Service;
+
+import com.example.network.VO.ResponseVO;
+import com.example.network.VO.TaskVO;
+
+public interface TaskService {
+    /**
+     * 管理员添加任务
+     *
+     * @param taskVO 任务相关信息
+     */
+    ResponseVO create(TaskVO taskVO);
+
+    ResponseVO delete(Integer taskId);
+}
