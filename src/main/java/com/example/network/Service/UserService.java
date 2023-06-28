@@ -18,6 +18,14 @@ public interface UserService {
      */
     ResponseVO login(UserVO userVO);
 
+
+    /**
+     * 管理员添加普通用户
+     *
+     * @param userVO 用户信息
+     */
+    ResponseVO addUser(UserVO userVO);
+
     /**
      * 用户信息修改
      *
@@ -25,5 +33,12 @@ public interface UserService {
      */
     ResponseVO updateUserInfo(UserVO userVO);
 
+    /**
+     * 管理员删除普通用户
+     *
+     * @param userId 普通用户id
+     */
     ResponseVO deleteUser(Integer userId);
+
+    ResponseVO getAllUsers();
 }

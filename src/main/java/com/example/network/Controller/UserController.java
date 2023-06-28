@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -24,6 +25,11 @@ public class UserController {
         return userService.login(userVO);
     }
 
+    @PostMapping("addUser")
+    public ResponseVO addUser(@RequestBody UserVO userVO) {
+        return userService.addUser(userVO);
+    }
+
     @PostMapping("updateUserInfo")
     public ResponseVO updateUserInfo(@RequestBody UserVO userVO) {
         return userService.updateUserInfo(userVO);
@@ -34,6 +40,15 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
+    @GetMapping("/getAllUsers")
+    public ResponseVO getAllUsers() {
+        try {
+            return ResponseVO.buildSuccess(userService.getAllUsers());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("获取所有用户失败");
+        }
+    }
 
 
 }

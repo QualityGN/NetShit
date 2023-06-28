@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -47,6 +50,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ResponseVO addUser(UserVO userVO) {
+        User user = new User();
+        BeanUtils.copyProperties(userVO, user);
+        return ResponseVO.buildSuccess(userRepository.save(user));
+    }
+
+
+    @Override
     public ResponseVO updateUserInfo(UserVO userVO) {
         User user = new User();
         BeanUtils.copyProperties(userVO, user);
@@ -59,13 +70,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO deleteUser(Integer userId) {
-        if (userRepository.getUserById(userId) == null)
+        User user = userRepository.getUserById(userId);
+        if (user == null)
             return ResponseVO.buildFailure(USER_NOTEXIST);
+        if (user.getUserType() == 1)//如果该用户为管理员用户
+            return ResponseVO.buildFailure("操作不合法");
         userRepository.deleteUserById(userId);
         return ResponseVO.buildSuccess();
     }
 
+    @Override
+    public ResponseVO getAllUsers() {
+        List<User> userList = userRepository.findAll();
 
+        List<UserVO> resList = new ArrayList<>();
+        for (User user : userList) {
+            UserVO userVO = new UserVO();
+            BeanUtils.copyProperties(user, userVO);
+            resList.add(userVO);
+        }
+        return ResponseVO.buildSuccess(resList);
+    }
 
 
 }
