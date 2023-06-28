@@ -1,0 +1,21 @@
+spring:
+  ##???????
+  datasource:
+    url: jdbc:mysql://localhost:3306/net?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbcp2:
+      min-idle: 2         #??????????????
+      initial-size: 2     #?????????
+      max-total: 2          #??????
+      max-wait-millis: 200        #?????????????
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
