@@ -11,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Accessors(chain = true)
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "result")
+@Table(name = "topology_result")
 public class Result {//普通用户任务完成详情
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Result {//普通用户任务完成详情
     private Integer taskId;//任务id
 
     @Column(name = "score")
-    private double score;
+    private Double score;//分数
 
     @Column(name = "file_path")
     private String filePath;//保存的配置文件

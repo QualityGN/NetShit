@@ -8,5 +8,8 @@ public class TaskVO {
     private Integer userId;
     private String timestamp;
     private String taskDescription;
+    private Integer taskType;
     private String testDescription;
+    private Double score;
+    private String filePath;
 }

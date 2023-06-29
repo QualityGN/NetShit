@@ -26,4 +26,14 @@ public class TaskController {
     public ResponseVO deleteTask(@RequestBody Integer taskId) {
         return taskService.delete(taskId);
     }
+
+    @PostMapping("/retrieve")
+    public ResponseVO retrieveTask(@RequestBody Integer userId, @RequestBody Integer taskId) {
+        return taskService.retrieveTask(userId, taskId);
+    }
+
+    @PostMapping("/getAllTasksById")
+    public ResponseVO getAllTasksById(@RequestBody Integer userId) {
+        return taskService.getAllTasksById(userId);
+    }
 }
